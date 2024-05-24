@@ -15,6 +15,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "127.0.0.1:2019:12019"
+    labels:
+      - "caddy=:12019"
+      - "caddy.reverse_proxy=localhost:2019"
+      - "caddy.reverse_proxy.0_header_up=Host localhost:2019"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./resources/caddy:/data/caddy
